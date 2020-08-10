@@ -19,14 +19,14 @@ case $TRAVIS_OS_NAME in
     osx)
         brew install gcc@8
         #wget -qO /tmp/trinity.tar.gz https://github.com/trinityrnaseq/trinityrnaseq/releases/download/"${TRINITY}"/trinityrnaseq-"${TRINITY}".FULL.tar.gz
-	      wget -qO /tmp/trinity.tar.gz https://github.com/trinityrnaseq/trinityrnaseq/archive/Trinity-v"${TRINITY}".tar.gz
-	      tar -zxvf /tmp/trinity.tar.gz && cd trinityrnaseq-Trinity-v"${TRINITY}"
-	      export PATH=/usr/local/bin:$PATH
-	      make CXX=g++-8 CC=gcc-8 && make plugins CXX=g++-8 CC=gcc-8
-	      rm -rf ./util/support_scripts/tests && cd ..  # It is not compatible with python 3 and pytest!
-	      # The version of sra-tools in macOS channel is not the latest, so don't specify it here.
-	      # The default version of samtools is 1.4, which doesn't work, so set it to the latest (1.10).
-	      conda install -qy python="$PYTHON" sra-tools numpy bowtie bowtie2 kmer-jellyfish salmon trimmomatic samtools=1.10
+        wget -qO /tmp/trinity.tar.gz https://github.com/trinityrnaseq/trinityrnaseq/archive/Trinity-v"${TRINITY}".tar.gz
+        tar -zxvf /tmp/trinity.tar.gz && cd trinityrnaseq-Trinity-v"${TRINITY}"
+        export PATH=/usr/local/bin:$PATH
+        make CXX=g++-8 CC=gcc-8 && make plugins CXX=g++-8 CC=gcc-8
+        rm -rf ./util/support_scripts/tests && cd ..  # It is not compatible with python 3 and pytest!
+        # The version of sra-tools in macOS channel is not the latest, so don't specify it here.
+        # The default version of samtools is 1.4, which doesn't work, so set it to the latest (1.10).
+        conda install -qy python="$PYTHON" sra-tools numpy bowtie bowtie2 kmer-jellyfish salmon trimmomatic samtools=1.10
     ;;
 esac
 mkdir -p "${HOME}"/.ncbi

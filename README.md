@@ -17,7 +17,7 @@
   * [Usage](#usage)
      * [Specific options for running the Docker image](#specific-options-for-running-the-docker-image)
      * [An example: finding "inexistent" <em>S6K</em> gene in a mosquito species](#an-example-finding-inexistent-s6k-gene-in-a-mosquito-species)
-        * [Get the sequence of a homologous gene from a well-studied species](#get-the-sequence-of-a-homologous-gene-from-a-well-studied-species)
+        * [Retrieve the sequence of a homologous gene from a well-studied species](#retrieve-the-sequence-of-a-homologous-gene-from-a-well-studied-species)
         * [Select a public SRA database for the species to be investigated](#select-a-public-sra-database-for-the-species-to-be-investigated)
         * [Run the r2g pipeline](#run-the-r2g-pipeline)
         * [Review the result](#review-the-result)
