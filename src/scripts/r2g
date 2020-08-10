@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+import sys
+import os
+import platform
+from copy import deepcopy
+
+import r2g
+from r2g import utils
+from r2g.online import blast
+from r2g.online import fetch
+from r2g.local import assemblers
+from r2g import errors
+
+
+if __name__ == "__main__":
+    args = utils.parse_arguments(sys.argv[1:])
+    print("\033[1;37m{}\033[0m".format(r2g.__banner__))
+    print(" {} {} (Python {})\n".format(r2g.__title__, r2g.__version__, platform.python_version()))
+    utils.log(args, args['verbose'], 'debug')
+    app_json = utils.preflight(args)
+    utils.log(app_json, args['verbose'], 'debug')
+    try:
+        utils.log("Trying to create the output folder: {}".format(args['outdir']))
+        os.mkdir(args['outdir'], 0o750)
+    except OSError:
+        utils.log("{} exists.".format(args['outdir']))
+        if not os.access(args['outdir'], os.W_OK):
+            raise errors.OutputError('{} is not writable.'.format(args['outdir']))
+
+    utils.log("{} against following databases:".format(args['program']))
+    seq_name, download_list = blast.query(args, app_json['chromedriver'])
+    # Abort if there is no hit:
+    if len(download_list) == 0:
+        utils.log("NCBI hasn't return any valid hits blasting against {}. "
+                  "Don't panic, maybe you can try another SRA database instead.".format(args['sra']))
+    else:
+        # fd_outdir refers to the output folder for fastq-dump:
+        fd_stamp = utils.stamp()
+        fd_outdir = os.path.join(args['outdir'], "fastq-dump_output_{}".format( fd_stamp))
+        utils.log("Creating a folder for fastq-dump: {}".format(fd_outdir))
+        os.mkdir(fd_outdir, 0o750)
+        # start downloading:
+        fd_log_file = os.path.join(args['outdir'], 'run_fastq-dump_{}.log'.format(fd_stamp))
+        fd_log = open(fd_log_file, 'w')
+        fastq_list = {}
+        paired = True  # the initial value
+        for item in download_list.items():
+            sra_sequences = {}
+            current_job, total_job = 0, len(item[-1])
+            for spot in item[-1]:
+                current_job += 1
+                retry = -1
+                utils.processing(current_job, total_job, "Start downloading hits from {}".format(item[0]))
+                while retry < int(args['retry']):
+                    try:
+                        spot_sequences, log = fetch.fastq_dump(item[0], spot[0], spot[1], app_json)
+                    except errors.FetchError as err:
+                        utils.log("Errors occurred while fetching sequences. Retrying...", shift="\n")
+                        retry += 1
+                        if retry == int(args['retry']):
+                            utils.log("\033[1;33mWARNING:\033[0m couldn't fetch sequences from the spots {} - {} "
+                                      "in the sra {} after {} retries. Skipped. "
+                                      "Errors from fastq-dump below must be investigated: "
+                                      "{}".format(item[0], spot[0], spot[1], retry, err))
+                    else:
+                        for p in spot_sequences.keys():
+                            sra_sequences[p] = deepcopy(sra_sequences.get(p, '')) + deepcopy(spot_sequences[p])
+                        fd_log.write(log)
+                        break
+            for p in sra_sequences.keys():
+                filename = os.path.join(fd_outdir, "{}_{}.fastq".format(item[0], p))
+                filenames = deepcopy(fastq_list.get(p, []))
+                filenames.append(filename)
+                fastq_list[p] = deepcopy(filenames)
+                with open(filename, "w") as outf:
+                    outf.write(sra_sequences[p])
+            if len(sra_sequences.keys()) < 2:
+                paired = False
+            if paired is False and len(sra_sequences.keys()) > 1:
+                utils.log("\033[1;33mWARNING:\033[0m since some of fastq files are paired but some are not, "
+                          "all fastq files will be taken as singled-end files while being fed to Trinity.")
+        fd_log.close()
+        # Trinity:
+        utils.log("Calling Trinity.")
+        trinity = assemblers.Trinity(args, app_json, fastq_list, paired)
+        trinity_dir = trinity.run()
+        cleanup_items = [fd_log_file, fd_outdir]
+        if args['stage'] == 'chrysalis' or args['stage'] == 'butterfly':
+            final_result = os.path.join(args['outdir'], "{}.homologs.{}.fasta".format(seq_name, utils.stamp()))
+            cleanup_items.append(trinity_dir)
+            utils.log("The final assembled homologous gene was written to \033[1;36m{}\033[0m".format(final_result))
+        else:
+            final_result = os.path.join(args['outdir'], "r2g_results-{}.{}".format(args['stage'], utils.stamp()))
+            utils.log('r2g stopped at the stage "{}" as you requested.'.format(args['stage']))
+            utils.log("The final results are in the folder \033[1;36m{}\033[0m".format(final_result))
+        trinity.copyto(final_result)
+
+        # Clean up:
+        if args['cleanup']:
+            utils.log("A little bit of housekeeping work...")
+            utils.delete_everything(cleanup_items)
+
+    utils.log("All set. Bye.")
