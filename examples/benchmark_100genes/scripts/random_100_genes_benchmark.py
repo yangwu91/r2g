@@ -17,6 +17,7 @@ def random_pick(fasta_file):
 
 
 sp1 = sys.argv[1]
+# sp2 = "SRX5522876,SRX5522877,SRX5522878"
 sp2 = sys.argv[2]
 sp1_picked = random_pick(sp1)
 

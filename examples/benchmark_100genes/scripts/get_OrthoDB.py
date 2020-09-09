@@ -64,7 +64,7 @@ def get_orthodb_intprot_id(faa, level):
             results = str(json.loads(orthodb_request.text).get("message"))
         except json.decoder.JSONDecodeError:
             orthodb_tsv = [line.split('\t') for line in orthodb_request.text.strip('\n').split('\n')]
-            results = [l[5] for l in orthodb_tsv[1:]]
+            results = [line[5] for line in orthodb_tsv[1:]]
     return results
 
 

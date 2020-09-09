@@ -128,14 +128,14 @@ def _parse_xml(raw_results, args):
             err = str(e)
             r += 1
             print(raw_results)
-            utils.log("\033[1;33mWARNING:\033[0m couldn't get results from NCBI due to temporary errors. Retrying...",
+            utils.log("WARNING: couldn't get results from NCBI due to temporary errors. Retrying...",
                       args['verbose'], 'debug')
         else:
             Iterations = results_tree.find(
                 'BlastOutput_iterations'
             ).findall('Iteration')
-            for I in Iterations:
-                hits = I.find('Iteration_hits')
+            for i in Iterations:
+                hits = i.find('Iteration_hits')
                 for hit in hits:
                     hit = hit.find('Hit_accession').text.strip().split('.')
                     try:
@@ -150,7 +150,7 @@ def _parse_xml(raw_results, args):
             err = ""
             break
     if len(err) > 0:
-        utils.log("\033[1;33mWARNING:\033[0m couldn't get results for from NCBI due to temporary errors. "
+        utils.log("WARNING: couldn't get results for from NCBI due to temporary errors. "
                   "The fragment was skipped.")
         if args['verbose']:
             with open(
@@ -180,7 +180,7 @@ def query(args, webdriver):
                 utils.processing(
                     current,
                     len(seq_chunks),
-                    "\033[1;32m{}\033[0m - {} \033[1;37m({})\033[0m".format(i[0], srx, srr),
+                    "{} - {} ({})".format(i[0], srx, srr),
                     "percent"
                 )
                 r = -1

@@ -17,10 +17,10 @@ def get_mapping_list():
         line = line.split('\t')
         SDS500 = line[3].split(',')
         India = line[6].split(',')
-        for I in India:
-            mapped_SDS = deepcopy(mapping.get(I, []))
+        for i in India:
+            mapped_SDS = deepcopy(mapping.get(i, []))
             mapped_SDS += SDS500
-            mapping[I] = deepcopy(mapped_SDS)
+            mapping[i] = deepcopy(mapped_SDS)
     return mapping
 
 

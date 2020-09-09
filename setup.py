@@ -12,13 +12,13 @@ setup(
     name='r2g',
     version=version,
     license="MIT",
-    url='https://github.com/yangwu91/r2g.git',
+    url='https://yangwu91.github.io/r2g/',
     author='Yang Wu',
     author_email='wuyang@drwu.ga',
     maintainer="Yang Wu",
     maintainer_email="wuyang@drwu.ga",
-    description='A computationally lightweight and homology-based pipeline that allows rapid identification of '
-                'genes or gene families from raw sequence databases in the absence of an assembly',
+    description='A homology-based, computationally lightweight pipeline for '
+                'discovering genes in the absence of an assembly',
     long_description=long_description,
     long_description_content_type="text/markdown",
     python_requires='>=3.6',
@@ -48,6 +48,7 @@ setup(
     ],
     install_requires=["requests~=2.24.0", "selenium~=3.141.0"],
     extras_require={
+        'gui': ["r2g_gui", "PyQt5~=5.12.3"],
         'test': ["pytest", "pytest-cov", "codecov"],
     },
 )

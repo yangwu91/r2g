@@ -57,21 +57,17 @@ class Trinity:
         utils.log("Trinity is running. Output dir: {}".format(self.output))
         utils.log("Trinity log file: {}".format(self.log))
         try:
-            with subprocess.Popen(self.cmd,
-                                  shell=False,
-                                  stdout=subprocess.PIPE,
-                                  stderr=subprocess.PIPE,
-                                  # bufsize=1
-                                  ) as p:
+            with subprocess.Popen(self.cmd, shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                  bufsize=1, text=True) as p:
                 if not self.args.get('cleanup', False):
                     with open(self.log, 'w') as outf:
                         for line in iter(p.stdout.readline, ''):
                             if len(line) == 0:
                                 break
-                            outf.write(utils.bytes2str(line))
+                            outf.write(line)
                             if self.args['verbose']:
                                 print(line)
-                        # sys.stdout.write(line)
+                                # sys.stdout.write(line)
                 p.wait()
                 if p.returncode != 0:
                     raise errors.AssembleError(
@@ -82,7 +78,7 @@ class Trinity:
                 return self.output
         except Exception as err:
             raise errors.AssembleError("Errors raised when called Trinity. {}. "
-                                       "Please check the Trinity log above".format(err))
+                                       "Please check the Trinity log above.".format(err))
 
     def copyto(self, final_result):
         if self.args['stage'] == 'chrysalis' or self.args['stage'] == 'butterfly':

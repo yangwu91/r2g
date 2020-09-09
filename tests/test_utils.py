@@ -42,7 +42,7 @@ class TestUtils(unittest.TestCase):
         ]
         self.path = deepcopy(os.environ['PATH'])
         self.app_json = utils.preflight(self.args)
-        #self.app_json["chromedriver"] = os.environ.get("PRIVATE_WEBDRIVER", "http://127.0.0.1:4444/wd/hub")
+        # self.app_json["chromedriver"] = os.environ.get("PRIVATE_WEBDRIVER", "http://127.0.0.1:4444/wd/hub")
         utils.log("app_json is {}".format(self.app_json))
         self.pwd = os.getcwd()
 

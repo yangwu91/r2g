@@ -1,0 +1,51 @@
+{% set name = "r2g" %}
+{% set version = "0.0.0" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+build:
+  number: 0
+  noarch: python
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - pip
+    - python >=3.6
+    - requests >=2.24.0
+    - selenium >=3.141.0
+  run:
+    - python >=3.6
+    - requests >=2.24.0
+    - selenium >=3.141.0
+    - sra-tools
+    - trinity =2.8.5
+    - samtools >=1.9
+    - numpy
+
+test:
+  imports:
+    - r2g
+    - r2g.local
+    - r2g.online
+    - r2g.utils
+
+about:
+  home: "https://yangwu91.github.io/r2g/"
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: "A homology-based, computationally lightweight pipeline for discovering genes in the absence of an assembly"
+  doc_url: "https://yangwu91.github.io/r2g/"
+  dev_url: "https://github.com/yangwu91/r2g.git"
+
+extra:
+  recipe-maintainers:
+    - yangwu91
+

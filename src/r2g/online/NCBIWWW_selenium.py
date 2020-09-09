@@ -55,17 +55,17 @@ def _format_sra(sra, text):
     if srx is not None and srr is None:
         srr = _search_keyword(r'"{} \([\d\w\ \:]+; run:([0-9A-Z ]+)\)'.format(srx.upper()), text)
         if srr is None:
-            raise errors.QueryError("Invalid SRX accession number: \033[31m{}\033[0m. Aborted.".format(sra))
+            raise errors.QueryError("Invalid SRX accession number: {}. Aborted.".format(sra))
     elif srr is not None and srx is None:
         srx = _search_keyword(r'"(\w+\d+) \([\d\w\ \:]+; run:[0-9A-Z ]*({})[0-9A-Z ]*\)'.format(srr.upper()), text)
         if srx is None:
-            raise errors.QueryError("Invalid SRR accession number: \033[31m{}\033[0m. Aborted.".format(sra))
+            raise errors.QueryError("Invalid SRR accession number: {}. Aborted.".format(sra))
         else:
             # An SRX may relates to multiple SRAs:
             srr = _search_keyword(r'"{} \([\d\w\ \:]+; run:([0-9A-Z ]+)\)'.format(srx.upper()), text)
     else:
         raise errors.QueryError(
-            "Invalid SRA accession number: \033[31m{}\033[0m. Aborted.".format(sra)
+            "Invalid SRA accession number: {}. Aborted.".format(sra)
         )
     taxid = _search_keyword(r'"{} \(.+taxid:(\d+); run:{}'.format(srx, srr), text)
     srr = srr.strip().split()
@@ -451,7 +451,7 @@ def qblast(
             )
         except Exception as err:
             utils.log(
-                "\033[1;33mWARNING:\033[0m Couldn't poll results from NCBI. {}. "
+                "WARNING: Couldn't poll results from NCBI. {}. "
                 "But don't panic, we will retry and are almost there.".format(err),
                 verbose=verbose,
                 attr="debug"
@@ -502,7 +502,7 @@ def qblast(
                                         break
                                     else:
                                         utils.log(
-                                            "\033[1;33mWARNING:\033[0m Although the results are ready, "
+                                            "WARNING: Although the results are ready, "
                                             "they can't be retrieved somehow. "
                                             "Don't panic, we will retry and are almost there.",
                                             verbose=verbose,
@@ -511,7 +511,7 @@ def qblast(
                                         continue
                                 else:
                                     utils.log(
-                                        "\033[1;33mWARNING:\033[0m Although the query was submitted, "
+                                        "WARNING: Although the query was submitted, "
                                         "but the results couldn't be retrieved probably because of network issues. "
                                         "Status code: {}.".format(poll_response.status_code),
                                         verbose=verbose,
@@ -519,23 +519,23 @@ def qblast(
                                     )
                     else:
                         utils.log(
-                            "\033[1;33mWARNING:\033[0m Something wrong while retrieving results from NCBI. "
-                            "RID: {}. Status: \033[1;33m{}\033[0m. "
+                            "WARNING: Something wrong while retrieving results from NCBI. "
+                            "RID: {}. Status: {}. "
                             "But don't panic, we will retry and are almost there.".format(poll_rid, poll_status),
                             verbose=verbose,
                             attr="debug"
                         )
                 else:
                     utils.log(
-                        "\033[1;33mWARNING:\033[0m The submitted RID (\033[1;33m{}\033[0m) "
-                        "is different from the polled one (\033[1;33m{}\033[0m). "
+                        "WARNING: The submitted RID ({}) "
+                        "is different from the polled one ({}). "
                         "But don't panic, we will try to retrieve results again.".format(rid, poll_rid),
                         verbose=verbose,
                         attr="debug"
                     )
             else:
                 utils.log(
-                    "\033[1;33mWARNING:\033[0m Couldn't get results from NCBI. Status code: \033[1;33m{}\033[0m. "
+                    "WARNING: Couldn't get results from NCBI. Status code: {}. "
                     "But don't panic, we will retry and are almost there.".format(poll_response.status_code),
                     verbose=verbose,
                     attr="debug"
