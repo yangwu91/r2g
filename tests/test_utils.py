@@ -48,7 +48,7 @@ class TestUtils(unittest.TestCase):
 
     def test_parse_args(self):
         utils.log("Testing r2g.utils.utils _parse_args")
-        raw_args = "-o OUTPUT -s SRXNNNNNN -q ATGC --cut 80,50 -p blastn --CPU 4 --retry"
+        raw_args = "r2g -o OUTPUT -s SRXNNNNNN -q ATGC --cut 80,50 -p blastn --CPU 4 --retry"
         raw_args = raw_args.split()
         parsed_args = utils.parse_arguments(raw_args)
         self.assertEqual(parsed_args, self.args)

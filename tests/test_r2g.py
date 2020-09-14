@@ -51,7 +51,7 @@ args_dict = {
 class TestR2g(unittest.TestCase):
 
     def test_utils_parse_argument(self):
-        online_raw_args = "-o RPS7 -s SRX5138669 -q aae_RPS7.fa --cut 50,20 -r 5 --CPU 4".split()
+        online_raw_args = "r2g -o RPS7 -s SRX5138669 -q aae_RPS7.fa --cut 50,20 -r 5 --CPU 4".split()
         globals()['args_dict']['query'] = "aae_RPS7.fa"
         self.assertEqual(utils.parse_arguments(online_raw_args), globals()['args_dict'])
 

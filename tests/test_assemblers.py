@@ -34,7 +34,7 @@ class TestAssemblers(unittest.TestCase):
         paired = True
         app_json = utils.preflight(self.args)
         trinity = assemblers.Trinity(self.args, app_json, self.fastq_list, paired)
-        trinity_dir = trinity.run()
+        trinity_dir, trinity_log_file = trinity.run()
         result = "{}/Trinity.fasta".format(trinity_dir)
         if os.path.isfile(result):
             trinity.copyto("{}/final_assembly.fasta".format(self.output_dir))
@@ -49,7 +49,7 @@ class TestAssemblers(unittest.TestCase):
         self.args['trim'] = True
         app_json = utils.preflight(self.args)
         trinity = assemblers.Trinity(self.args, app_json, self.fastq_list, paired)
-        trinity_dir = trinity.run()
+        trinity_dir, trinity_log_file = trinity.run()
         # result = "{}/{}.Trinity.fasta".format(self.output_dir, os.path.split(trinity_dir)[1])
         result = "{}/{}/Trinity.fasta".format(self.output_dir, os.path.split(trinity_dir)[1])
         if os.path.isfile(result) and os.stat(result).st_size > 1000:
@@ -64,7 +64,7 @@ class TestAssemblers(unittest.TestCase):
         del self.fastq_list['2']
         app_json = utils.preflight(self.args)
         trinity = assemblers.Trinity(self.args, app_json, self.fastq_list, paired)
-        trinity_dir = trinity.run()
+        trinity_dir, trinity_log_file = trinity.run()
         result = "{}/{}/Trinity.fasta".format(self.output_dir, os.path.split(trinity_dir)[1])
         print(result)
         print(os.stat(result).st_size)
@@ -79,7 +79,7 @@ class TestAssemblers(unittest.TestCase):
             self.args['stage'] = stage
             app_json = utils.preflight(self.args)
             trinity = assemblers.Trinity(self.args, app_json, self.fastq_list, paired)
-            trinity_dir = trinity.run()
+            trinity_dir, trinity_log_file = trinity.run()
             if stage == "jellyfish":
                 result = "{}/jellyfish.kmers.fa".format(trinity_dir)
             elif stage == "inchworm":

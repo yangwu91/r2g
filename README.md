@@ -34,7 +34,9 @@
 
 ### Pulling the Docker image (recommended)
 
-Please follow the instruction [here](https://docs.docker.com/get-docker/) to download and install Docker based on your operating system before running the Docker image. This is **recommended** as it is compatible with most common operating systems including Linux, macOS and Windows.
+Please follow the instruction [here](https://docs.docker.com/get-docker/) to download and install Docker based on your operating system before running the Docker image. **For Windows users**, please check [here](https://github.com/yangwu91/r2g/wiki/Install-and-configure-Docker-on-Windows) to configure the Docker if it is your first time to use it. 
+
+This installation method is **recommended** as it is compatible with most common operating systems including Linux, macOS and Windows.
 
 Then, pull the r2g Docker image with all required software packages installed and configured by one command as follows:
 
