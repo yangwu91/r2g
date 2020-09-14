@@ -1,8 +1,9 @@
 name: Build and Push to PyPI, Conda and Docker
 
 on:
-  release:
-    types: [published]
+  push
+#  release:
+#    types: [published]
 
 jobs:
   deploy:
@@ -26,11 +27,14 @@ jobs:
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+        URL_BASE: "https://pypi.io"
       run: |
         python setup.py sdist bdist_wheel
         echo $(twine upload dist/*)
         export VERSION=$(grep -o "[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9a-z]\+" src/r2g/__init__.py)
         echo "::set-env name=VERSION::$VERSION"
+        export URL="${URL_BASE}/packages/source/r/r2g/r2g-${VERSION}.tar.gz"
+        wget -qO r2g-tmp.tar.gz $URL
         export SHA=$(sha256sum r2g-tmp.tar.gz |cut -f 1 -d " ")
         echo "::set-env name=SHA::$SHA"
     - name: Trigger dryrun using Homebrew on macOS
