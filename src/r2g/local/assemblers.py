@@ -57,38 +57,31 @@ class Trinity:
         utils.log("Trinity cmd: {}".format(' '.join(self.cmd)))
         utils.log("Trinity is running. Output dir: {}".format(self.output))
         utils.log("Trinity log file: {}".format(self.log))
+        logs = ""
         try:
-            p = subprocess.Popen(
+            p = subprocess.run(
                 self.cmd,
                 shell=False,
                 stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                # bufsize=1,
-                # text=True,
+                stderr=subprocess.STDOUT,
             )
-            if self.args['verbose']:
-                if not self.args.get('cleanup', False):
-                    outf = open(self.log, 'w')
-                for line in iter(p.stdout.readline, b''):
-                    line = line.decode('utf-8')
-                    if len(line) == 0:
-                        break
-                    sys.stdout.write(line)
-                    if not self.args.get('cleanup', False):
-                        outf.write(line)
-            p.wait()
-            if not self.args.get('cleanup', False):
-                outf.close()
+            logs = p.stdout.decode('utf-8')
             if p.returncode != 0:
-                raise errors.AssembleError(
-                    "Trinity failed. Please check log files {} for more information.".format(self.log)
-                )
+                if self.args['verbose']:
+                    print(logs)
+                raise errors.AssembleError("Trinity exited {}.".format(p.returncode))
             else:
                 utils.log("Trinity done.")
-            return self.output
+            return self.output, self.log
         except Exception as err:
+            if self.args['verbose'] and len(logs.strip()) > 0:
+                print(logs)
             raise errors.AssembleError("Errors raised when called Trinity. {}. "
                                        "Please check the Trinity log above.".format(err))
+        finally:
+            if len(logs.strip()) > 0:
+                with open(self.log, 'w') as outf:
+                    outf.write(logs)
 
     def copyto(self, final_result):
         if self.args['stage'] == 'chrysalis' or self.args['stage'] == 'butterfly':

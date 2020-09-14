@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 import sys
 import os
 import platform
@@ -13,7 +14,7 @@ from r2g import errors
 
 
 if __name__ == "__main__":
-    args = utils.parse_arguments(sys.argv[1:])
+    args = utils.parse_arguments(sys.argv)
     print(r2g.__banner__)
     print(" {} {} (Python {})\n".format(r2g.__title__, r2g.__version__, platform.python_version()))
     utils.log(args, args['verbose'], 'debug')
@@ -88,7 +89,7 @@ if __name__ == "__main__":
         else:
             utils.log("Calling Trinity.")
             trinity = assemblers.Trinity(args, app_json, fastq_list, paired)
-            trinity_dir = trinity.run()
+            trinity_dir, trinity_log_file = trinity.run()
             if args['stage'] == 'chrysalis' or args['stage'] == 'butterfly':
                 final_result = os.path.join(args['outdir'], "{}.homologs.{}.fasta".format(seq_name, utils.stamp()))
                 cleanup_items.append(trinity_dir)
@@ -97,6 +98,7 @@ if __name__ == "__main__":
                 final_result = os.path.join(args['outdir'], "r2g_results-{}.{}".format(args['stage'], utils.stamp()))
                 utils.log('R2g stopped at the stage "{}" as you requested.'.format(args['stage']))
                 utils.log("The final results are in the folder {}.".format(final_result))
+            cleanup_items.append(trinity_log_file)
             trinity.copyto(final_result)
 
         # Clean up:

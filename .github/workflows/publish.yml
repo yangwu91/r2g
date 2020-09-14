@@ -28,17 +28,28 @@ jobs:
         TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
       run: |
         python setup.py sdist bdist_wheel
-        twine upload dist/*
-#        twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+        echo $(twine upload dist/*)
+        export VERSION=$(grep -o "[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9a-z]\+" src/r2g/__init__.py)
+        echo "::set-env name=VERSION::$VERSION"
+        export SHA=$(sha256sum r2g-tmp.tar.gz |cut -f 1 -d " ")
+        echo "::set-env name=SHA::$SHA"
+    - name: Trigger dryrun using Homebrew on macOS
+      if: success()
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.REPO_GHA_PAT }}
+        repository: ${{ github.repository }}
+        event-type: trigger-dryrun-homebrew
+        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+
     - name: Build and publish to custom Conda channel
       env:
         ANACONDA_API_TOKEN: ${{ secrets.ANACONDA_TOKEN }}
         PKG: r2g
+        VERSION: ${{ env.VERSION }}
+        SHA: ${{ env.SHA }}
       run: |
-        export VERSION=$(grep -o "[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}" src/r2g/__init__.py)
-        sed -i "s/version = \"[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\"/version =\"${VERSION}\"/" conda-recipes/meta.yaml
-        echo "::set-env name=VERSION::$VERSION"
-        export SHA=$(sha256sum dist/r2g-${VERSION}.tar.gz |cut -f 1 -d " ")
+        sed -i "s/version = \"[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9a-z]\+\"/version =\"${VERSION}\"/" conda-recipes/meta.yaml
         sed -i "s/sha256: .\+/sha256: $SHA/" conda-recipes/meta.yaml
         wget -qO miniconda3.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
         bash miniconda3.sh -bfp /opt/miniconda3
@@ -50,6 +61,15 @@ jobs:
         /opt/miniconda3/bin/conda build -c conda-forge -c bioconda --output-folder conda-recipes conda-recipes
         /opt/miniconda3/bin/anaconda upload -p ${PKG} -u yangwu91 --label main -v $VERSION $(ls conda-recipes/noarch/${PKG}-*.tar.bz2)
 #        /opt/miniconda3/bin/anaconda logout
+    - name: Trigger dryrun using Conda on Linux
+      if: success()
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.REPO_GHA_PAT }}
+        repository: ${{ github.repository }}
+        event-type: trigger-dryrun-conda
+        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+
     - name: Docker build and push
       env:
         VERSION: ${{ env.VERSION }}
@@ -64,3 +84,11 @@ jobs:
         docker push yangwu91/${NAME}:latest
         docker push yangwu91/${NAME}:${VERSION}
         docker logout
+#    - name: Trigger dryrun using Docker on Windows
+#      if: success()
+#      uses: peter-evans/repository-dispatch@v1
+#      with:
+#        token: ${{ secrets.REPO_GHA_PAT }}
+#        repository: ${{ github.repository }}
+#        event-type: trigger-dryrun-docker
+#        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'

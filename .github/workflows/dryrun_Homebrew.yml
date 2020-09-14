@@ -1,0 +1,34 @@
+name: Run a quick test on macOS using brewsci Formula
+
+on:
+  repository_dispatch:
+    types: [trigger-dryrun-homebrew]
+
+jobs:
+  deploy:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.client_payload.sha }}
+    - name: Set up brewsci/bio Tap
+      env:
+        PRIVATE_WEBDRIVER: ${{ secrets.PRIVATE_WEBDRIVER }}
+        URL_BASE: "https://pypi.io"
+      run: |
+        export VERSION=$(grep -o "[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9a-z]\+" src/r2g/__init__.py)
+        export URL="${URL_BASE}/packages/source/r/r2g/r2g-${VERSION}.tar.gz"
+        sed -i ".1" "s,^  url \".*\"$,  url \"${URL}\"," brewsci-Formula/r2g.rb
+        export URL="${URL_BASE}/packages/source/r/r2g/r2g-${VERSION}.tar.gz"
+        wget -qO r2g-tmp.tar.gz $URL
+        export SHA=$(shasum -a 256 r2g-tmp.tar.gz |cut -f 1 -d " ")
+        sed -i ".2" "s/^  sha256 \"[0-9a-z]\{64\}\"$/  sha256 \"${SHA}\"/" brewsci-Formula/r2g.rb
+        brew tap brewsci/bio
+        cp ./brewsci-Formula/r2g.rb /usr/local/Homebrew/Library/Taps/brewsci/homebrew-bio/Formula/
+        head -9 /usr/local/Homebrew/Library/Taps/brewsci/homebrew-bio/Formula/r2g.rb
+        brew install r2g
+        mkdir -p "${HOME}"/.ncbi
+        echo "/LIBS/GUID = \"$(uuidgen)\"" > "${HOME}"/.ncbi/user-settings.mkfg
+        r2g --dry-run

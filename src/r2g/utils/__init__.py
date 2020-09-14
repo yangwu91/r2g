@@ -15,6 +15,7 @@ from multiprocessing import cpu_count
 
 import r2g
 from r2g import errors
+from r2g.utils.dryrun import DryRunAction
 
 
 def log(info, verbose=False, attr='info', shift=""):
@@ -73,7 +74,11 @@ def processing(current, total, info, mode="fraction"):
 
 
 def parse_arguments(raw_args):
-    parser = argparse.ArgumentParser()
+    r2g_script = raw_args[0]
+    parser = argparse.ArgumentParser(
+        prog=r2g.__title__,
+        description=r2g.__description__
+    )
     parser.add_argument("-V", "--version",
                         help="Print the version.",
                         action="version",
@@ -112,6 +117,11 @@ def parse_arguments(raw_args):
                              "but authentication is not supported yet (still testing).",
                         metavar='SCHEME://IP:PORT',
                         default=None
+                        )
+    parser.add_argument("--dry-run",
+                        help="A quick dry run to test if the r2g has been installed properly.",
+                        action=DryRunAction,
+                        r2g_script=r2g_script
                         )
     # 1. Online mode:
     # 1.1 NCBI options:
@@ -213,14 +223,16 @@ def parse_arguments(raw_args):
     #                         type=str.lower)
     # End of TODO
 
-    args_dict = vars(parser.parse_args(raw_args))  # dict
+    args_dict = vars(parser.parse_args(raw_args[1:]))  # dict
     try:
         args_dict['retry'] = int(args_dict['retry'])
     except TypeError:
         args_dict['retry'] = float('inf')
     # Detect if it is in a docker:
     try:
-        _ = re.search(r'docker', bytes2str(subprocess.check_output(["cat", "/proc/self/cgroup"]))).group()
+        _ = re.search(r'docker', bytes2str(
+            subprocess.check_output(["cat", "/proc/self/cgroup"], stderr=subprocess.STDOUT)
+        )).group()
     except Exception:
         args_dict['docker'] = False
         # The options "--proxy" and "--browser" are valid only if not in a docker:
