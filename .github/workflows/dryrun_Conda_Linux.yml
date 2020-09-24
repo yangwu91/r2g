@@ -21,7 +21,7 @@ jobs:
         /opt/miniconda3/bin/conda config --add channels defaults
         /opt/miniconda3/bin/conda config --add channels bioconda
         /opt/miniconda3/bin/conda config --add channels conda-forge
-        /opt/miniconda3/bin/conda install -yq yangwu91/${NAME}
+        /opt/miniconda3/bin/conda install -yq -c yangwu91 ${NAME}
         mkdir -p "${HOME}"/.ncbi
         echo "/LIBS/GUID = \"$(uuidgen)\"" > "${HOME}"/.ncbi/user-settings.mkfg
         /opt/miniconda3/bin/r2g --dry-run

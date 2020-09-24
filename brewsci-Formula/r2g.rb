@@ -1,16 +1,16 @@
 class R2g < Formula
   include Language::Python::Virtualenv
-  desc "A homology-based, computationally lightweight pipeline for discovering genes in the absence of an assembly"
+  desc "The lightweight pipeline for discovering homologous genes without assemblies"
   homepage "https://yangwu91.github.io/r2g/"
-  url "https://test-files.pythonhosted.org/packages/0c/84/dbbd11522e0cb3dcb9e8a34000d32992d3f2f41f286bdda644e18c57b8c6/r2g-1.0.3a0.tar.gz"
-  sha256 "4714faaf49498558b2c4c65b340c2d967efcda83ff5b5c305d0326992326c66f"
+  url "https://files.pythonhosted.org/packages/46/2a/bbeb7346c0a6fcbe62ad8086c7043572337bea8943be1afc74f2f65b0f74/r2g-1.0.3.tar.gz"
+  sha256 "8e0e671081f62cd8e73091a97838eccc63cb32c201b03cb90e13428e94fbf98a"
   license "MIT"
   head "https://github.com/yangwu91/r2g.git"
 
-  depends_on "python@3.8"
-  depends_on "sratoolkit"
   depends_on "brewsci/bio/trinity"
   depends_on "numpy"
+  depends_on "python@3.8"
+  depends_on "sratoolkit"
 
   resource "certifi" do
     url "https://files.pythonhosted.org/packages/40/a7/ded59fa294b85ca206082306bba75469a38ea1c7d44ea7e1d64f5443d67a/certifi-2020.6.20.tar.gz"

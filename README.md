@@ -68,10 +68,25 @@ In the future, I plan to create a pull request to the Bioconda recipes.
 
 ### Installing with Homebrew for macOS users
 
-*TODO*:
+*Progress*:
 
 - [x] Build Homebrew Formula
-- [ ] Submit to the `brewsci/bio` Tap.
+- [x] Init a pull request to the `brewsci/bio` Tap.
+- [ ] Be permitted by the `brewsci/bio` Tap.
+
+Since the r2g formula is still waiting for the approval from the the `brewsci/bio` Tap, macOS users can download the r2g formula and add it manually on your local computer.
+
+```
+# Install Homebrew and add the tap
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+brew tap brewsci/bio
+# Download the r2g formula and put it in the correct directory:
+/usr/local/Cellar/curl/7.72.0/bin/curl -o /usr/local/Homebrew/Library/Taps/brewsci/homebrew-bio/Formula/r2g.rb -fsSL https://raw.githubusercontent.com/yangwu91/r2g/master/brewsci-Formula/r2g.rb
+# Install r2g:
+brew install r2g
+```
+
+And then [Google Chrome web browser](https://www.google.com/chrome/) and the corresponding version of [ChromeDriver](https://chromedriver.chromium.org/downloads) (or [selenium/standalone-chrome](https://github.com/SeleniumHQ/docker-selenium/tree/trunk/StandaloneChrome) Docker image) need to be installed.
 
 ### Manual installation for all platforms
 

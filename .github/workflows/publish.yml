@@ -1,9 +1,8 @@
 name: Build and Push to PyPI, Conda and Docker
 
 on:
-  push
-#  release:
-#    types: [published]
+  release:
+    types: [published]
 
 jobs:
   deploy:
