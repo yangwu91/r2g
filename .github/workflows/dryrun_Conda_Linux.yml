@@ -11,9 +11,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Install r2g by Conda ans run a quick test
+    - name: Install r2g by Conda and run a quick test
       env:
-        NAME: r2g.dev
+        NAME: r2g
         PRIVATE_WEBDRIVER: ${{ secrets.PRIVATE_WEBDRIVER }}
       run : |
         wget -qO miniconda3.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
