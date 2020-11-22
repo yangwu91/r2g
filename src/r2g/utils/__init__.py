@@ -478,27 +478,6 @@ def preflight(args):
                 )
                 if choice:
                     path = input_dir[app]()
-                    # remote webdriver:
-                    # if app == "chromedriver":
-                    #     try:
-                    #         # Supposed to be a remote webdriver:
-                    #         address = re.search(r'(\d{1,3}\.\d{1,3}.\d{1,3}\.\d{1,3})', path).group(1)
-                    #     except AttributeError:
-                    #         # It is NOT a remote webdriver:
-                    #         pass
-                    #     else:
-                    #         # It is a remote webdriver, so try to format it:
-                    #         try:
-                    #             port = re.search(r'\d{1,3}\.\d{1,3}.\d{1,3}\.\d{1,3}:(\d+)', path).group(1)
-                    #         except AttributeError:
-                    #             port = "4444"
-                    #         try:
-                    #             scheme = re.search(r'(https?)://\d{1,3}\.\d{1,3}.\d{1,3}\.\d{1,3}', path).group(1)
-                    #         except AttributeError:
-                    #             scheme = "http"
-                    #         path = "{}://{}:{}/wd/hub".format(scheme, address, port)
-                    #         app_json[app] = path
-                    #         configured = True
                     while not configured:
                         path_app = _check_app(path, app)
                         if path_app is False:

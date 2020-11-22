@@ -51,7 +51,10 @@ if __name__ == "__main__":
             for spot in item[-1]:
                 current_job += 1
                 retry = -1
-                utils.processing(current_job, total_job, "Start downloading hits from {}".format(item[0]))
+                if args['docker'] is True:
+                    utils.log("Start downloading hits from {}: {}/{}".format(item[0], current_job, total_job))
+                else:
+                    utils.processing(current_job, total_job, "Start downloading hits from {}".format(item[0]))
                 while retry < int(args['retry']):
                     try:
                         spot_sequences, log = fetch.fastq_dump(item[0], spot[0], spot[1], app_json)

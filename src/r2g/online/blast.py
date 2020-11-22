@@ -177,12 +177,15 @@ def query(args, webdriver):
             current = 0
             for chunk in seq_chunks:
                 current += 1
-                utils.processing(
-                    current,
-                    len(seq_chunks),
-                    "{} - {} ({})".format(i[0], srx, srr),
-                    "percent"
-                )
+                if args['docker'] is True:
+                    utils.log("{} - {} ({}): {}%".format(i[0], srx, srr, round(current/len(seq_chunks*1.0)*100, 1)))
+                else:
+                    utils.processing(
+                        current,
+                        len(seq_chunks),
+                        "{} - {} ({})".format(i[0], srx, srr),
+                        "percent"
+                    )
                 r = -1
                 err = ''
                 while r < int(args['retry']):

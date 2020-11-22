@@ -1,0 +1,102 @@
+No.	An_stephensi_Indian_Gene	An_gambiae_VB	Description
+Ortholog_group
+0	ASTEI07129-RA	AGAP010503	potassium intermediate/small conductance calcium-activated channel subfamily N	OG6_102955
+1	ASTEI05225-RA	AGAP012839,AGAP000888,AGAP004173,AGAP009191,AGAP009193,AGAP012702,AGAP004380,AGAP004381,AGAP004382,AGAP004171,AGAP004379,AGAP009342,AGAP000761,AGAP004378,AGAP009194,AGAP009195,AGAP009196,AGAP009192,AGAP012838,AGAP004383,AGAP003257	unspecified product;glutathione S-transferase theta class 2;glutathione S-transferase delta class 5;glutathione S-transferase epsilon class 6;glutathione S-transferase epsilon class 4;glutathione S-transferase delta class 12;glutathione S-transferase delta class 4;glutathione S-transferase delta class 3;glutathione S-transferase delta class 8;glutathione S-transferase delta class 6;glutathione S-transferase unclassified 3;glutathione S-transferase theta class 1;glutathione S-transferase delta class 11;glutathione S-transferase epsilon class 2;glutathione S-transferase epsilon class 1;glutathione S-transferase epsilon class 7;glutathione S-transferase epsilon class 5;glutathione S-transferase delta class 10;glutathione S-transferase unclassified 2	OG6_100130
+2	ASTEI00328-RA	AGAP001984	unspecified product	OG6_129212
+3	ASTEI07829-RA	AGAP000293	ionotropic receptor IR100h	OG6_315706
+4	ASTEI03332-RA	AGAP003051	stearoyl-CoA desaturase (delta-9 desaturase)	OG6_129004
+5	ASTEI00019-RA	AGAP013266	eukaryotic translation initiation factor 2-alpha kinase 3	OG6_106778
+6	ASTEI07654-RA	AGAP007834	Tubulin gamma chain	OG6_101897
+7	ASTEI11819-RA	N/A (orthology only determined for protein-coding genes)	NA	NA
+8	ASTEI01541-RA	AGAP007721	synaptobrevin	OG6_105078
+9	ASTEI07217-RA	AGAP006469	cell growth-regulating nucleolar protein	OG6_106568
+10	ASTEI03999-RA	AGAP009978	dual oxidase: peroxidase and NADPH-oxidase domains	OG6_100242
+11	ASTEI06039-RA	AGAP010383,AGAP012154	solute carrier family 15 member 1	OG6_100318
+12	ASTEI08270-RA	AGAP010194	unspecified product	OG6_107071
+13	ASTEI01350-RA	AGAP007394	protein AATF/BFR2	OG6_102684
+14	ASTEI09398-RA	AGAP029438	unspecified product	OG6_100159
+15	ASTEI00709-RA	AGAP002462	long wavelength sensitive opsin	OG6_163080
+16	ASTEI07342-RA	AGAP006610,AGAP009673	glutaminyl-peptide cyclotransferase precursor;glutaminyl-peptide cyclotransferase	OG6_102560
+17	ASTEI11564-RA	AGAP009407,AGAP009415,AGAP002021	1-acyl-sn-glycerol-3-phosphate acyltransferase alpha;lysophosphatidate acyltransferase;1-acyl-sn-glycerol-3-phosphate acyltransferase	OG6_100535
+18	ASTEI01228-RA	AGAP000019	chaoptin	OG6_126460
+19	ASTEI01536-RA	AGAP007726	ArfGAP with SH3 domain, ankyrin repeat and PH domain 2	OG6_102461
+20	ASTEI09497-RA	AGAP008749	ER degradation enhancer, mannosidase alpha-like 3	OG6_105609
+21	ASTEI11352-RA	AGAP004034,AGAP013324	putative GPCR class a orphan receptor 4;putative G-protein coupled receptor GPCR	OG6_116561
+22	ASTEI08768-RA	AGAP002274	unspecified product	OG6_151190
+23	ASTEI00588-RA	AGAP002194,AGAP009589	1D-myo-inositol-triphosphate 3-kinase;Kinase	OG6_103318
+24	ASTEI03292-RA	AGAP003013	euchromatic histone-lysine N-methyltransferase	OG6_105922
+25	ASTEI00163-RA	AGAP002285	unspecified product	OG6_129207
+26	ASTEI09756-RA			OG6r1_136911
+27	ASTEI00597-RA	AGAP009696,AGAP002205,AGAP002207	cytochrome P450	OG6_132226
+28	ASTEI05016-RA	AGAP008837	20S proteasome subunit beta 4	OG6_102061
+29	ASTEI11975-RA	N/A (orthology only determined for protein-coding genes)	NA	NA
+30	ASTEI08631-RA	AGAP006759,AGAP006760	unspecified product;odorant-binding protein 62	OG6_187093
+31	ASTEI10983-RA			OG6_121520
+32	ASTEI07140-RA	AGAP010490	rabconnectin	OG6_103423
+33	ASTEI10402-RA	AGAP006034	unspecified product	OG6_129313
+34	ASTEI03832-RA	AGAP009510	malate dehydrogenase	OG6_101066
+35	ASTEI06322-RA	AGAP008018,AGAP005992	cytochrome P450	OG6_106077
+36	ASTEI06669-RA	AGAP010314	GPN-loop GTPase	OG6_101544
+37	ASTEI05367-RA	AGAP028583	unspecified product	OG6_187250
+38	ASTEI04882-RA	AGAP004470	STE24 endopeptidase	OG6_101632
+39	ASTEI09875-RA			OG6_142175
+40	ASTEI06822-RA			OG6_584920
+41	ASTEI03620-RA	AGAP006958,AGAP001424	Heat shock protein 83;heat shock protein 90kDa beta	OG6_100204
+42	ASTEI07645-RA	AGAP002076,AGAP004583,AGAP004944,AGAP004192,AGAP004581	heat shock 70kDa protein 1/8;heat shock 70kDa protein;heat shock 70kDa protein 5;heat shock protein 70kDa	OG6_100083
+43	ASTEI11586-RA	AGAP005727	unspecified product	OG6_109016
+44	ASTEI07179-RA	AGAP009390,AGAP009391,AGAP009111	odorant receptor 53;odorant receptor 30;odorant receptor 29	OG6_166743
+45	ASTEI00812-RA	AGAP003880,AGAP013454	unspecified product	OG6_112733
+46	ASTEI09937-RA	AGAP001118	unspecified product	OG6_132718
+47	ASTEI01679-RA	AGAP007777	unspecified product	OG6_126285
+48	ASTEI09064-RA	AGAP007142,AGAP007141	Serine-type enodpeptidase	OG6_102216
+49	ASTEI09224-RA	AGAP011818	unspecified product	OG6_107207
+50	ASTEI08752-RA	AGAP013371	unspecified product	OG6_315711
+51	ASTEI07093-RA	AGAP011480	unspecified product	OG6_315506
+52	ASTEI11105-RA	AGAP002708,AGAP002707	unspecified product;defective proboscis extension response 18	OG6_132561
+53	ASTEI12202-RA	N/A (orthology only determined for protein-coding genes)	NA	NA
+54	ASTEI00770-RA	AGAP003843	cytochrome c heme-lyase	OG6_101849
+55	ASTEI02054-RA	AGAP005425	actin-binding LIM protein	OG6_103132
+56	ASTEI05937-RA	AGAP004856	palmitoyltransferase ZDHHC16	OG6_103703
+57	ASTEI01203-RA	AGAP012991	Fascin	OG6_104023
+58	ASTEI06579-RA	AGAP009279	unspecified product	OG6_105989
+59	ASTEI01578-RA	AGAP007682	unspecified product	OG6_102254
+60	ASTEI00301-RA	AGAP003063	Rwd domain-containing protein	OG6_102929
+61	ASTEI05431-RA			OG6r1_121925
+62	ASTEI05794-RA	AGAP001286	integrator complex subunit 4	OG6_104599
+63	ASTEI08002-RA	AGAP001167	pre-rRNA-processing protein TSR2	OG6_103365
+64	ASTEI05289-RA	AGAP028554	unspecified product	OG6_315682
+65	ASTEI12179-RA	N/A (orthology only determined for protein-coding genes)	NA	NA
+66	ASTEI00815-RA	AGAP010871,AGAP003883	peptidyl-tRNA hydrolase, PTH2 family	OG6_100991
+67	ASTEI08093-RA	AGAP004784	fatty acyl-CoA reductase 2	OG6_124370
+68	ASTEI01035-RA	AGAP000434,AGAP002396	dolichyl-diphosphooligosaccharide--protein glycosyltransferase	OG6_100521
+69	ASTEI05150-RA	AGAP029729,AGAP029727,AGAP029728,AGAP029730,AGAP029731	unspecified product	OG6_119294
+70	ASTEI06756-RA	AGAP010394	Patched-related	OG6_102973
+71	ASTEI04432-RA	AGAP011684,AGAP000725	aryl hydrocarbon receptor interacting protein	OG6_106917
+72	ASTEI08401-RA	AGAP010782	Ral guanine nucleotide exchange factor 2	OG6_106137
+73	ASTEI09267-RA	AGAP004935,AGAP005326	unspecified product	OG6_124201
+74	ASTEI03183-RA	AGAP002724	unspecified product	OG6_316412
+75	ASTEI06136-RA	AGAP028598,AGAP028133	unspecified product	OG6_101685
+76	ASTEI07958-RA	AGAP002505	voltage-dependent calcium channel alpha 1, invertebrate	OG6_102692
+77	ASTEI09105-RA	AGAP029692,AGAP001026,AGAP008370,AGAP009593,AGAP011434,AGAP000621,AGAP006207,AGAP011435	unspecified product;carboxypeptidase A;Zinc carboxypeptidase A 1;zinc carboxypeptidase A 1;carboxypeptidase A1;carboxypeptidase B	OG6_100142
+78	ASTEI09445-RA	AGAP006390	unspecified product	OG6_166702
+79	ASTEI11046-RA	AGAP003437	unspecified product	OG6_103563
+80	ASTEI05868-RA	AGAP011973	DNA-directed RNA polymerase III subunit RPC6	OG6_102251
+81	ASTEI00759-RA	AGAP004266,AGAP012809	chaperone BCS1;BCS1 (mitochondrial chaperone) homolog family member	OG6_101424
+82	ASTEI01097-RA	AGAP000234	unspecified product	OG6_109177
+83	ASTEI00596-RA	AGAP002416,AGAP002869,AGAP008207,AGAP008212,AGAP008552,AGAP009240,AGAP010414,AGAP002868,AGAP008213,AGAP008356,AGAP013305,AGAP028019,AGAP000192,AGAP012294,AGAP001864,AGAP002867,AGAP008358,AGAP002419,AGAP006047,AGAP009246,AGAP012295,AGAP013490,AGAP002210,AGAP000088,AGAP008206,AGAP008209,AGAP012292,AGAP002206,AGAP002866,AGAP008208,AGAP008214,AGAP009241,AGAP012296,AGAP012850,AGAP002204,AGAP000193,AGAP000194,AGAP001861,AGAP002865,AGAP012291	cytochrome P450;Cytochrome P450;unspecified product	OG6_100014
+84	ASTEI05489-RA	AGAP001614	unspecified product	OG6_109867
+85	ASTEI09004-RA	AGAP010879	unspecified product	OG6_109206
+86	ASTEI08796-RA	AGAP000349	transient receptor potential cation channel subfamily C, invertebrate	OG6_316160
+87	ASTEI10929-RA			OG6_100195
+88	ASTEI04478-RA	AGAP000616,AGAP011557	26S proteasome regulatory subunit T5	OG6_101915
+89	ASTEI07803-RA	AGAP000278	odorant-binding protein 9	OG6_136448
+90	ASTEI09010-RA	AGAP010874	unspecified product	OG6_105633
+91	ASTEI04288-RA	AGAP004099	unspecified product	OG6_126481
+92	ASTEI04585-RA	AGAP006915	unspecified product	OG6_110757
+93	ASTEI03742-RA	AGAP009606	unspecified product	OG6_150913
+94	ASTEI05697-RA	AGAP001643	unspecified product	OG6_163692
+95	ASTEI00909-RA	AGAP013051	unspecified product	OG6_315645
+96	ASTEI11130-RA	AGAP028197	unspecified product	OG6_163415
+97	ASTEI12051-RA	N/A (orthology only determined for protein-coding genes)	NA	NA
+98	ASTEI01661-RA	AGAP001501,AGAP007793,AGAP007794,AGAP008867	Regucalcin protein;regucalcin protein	OG6_101744
+99	ASTEI03368-RA	AGAP003415	Grx3p	OG6_101660
