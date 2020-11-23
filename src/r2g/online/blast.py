@@ -178,7 +178,7 @@ def query(args, webdriver):
             for chunk in seq_chunks:
                 current += 1
                 if args.get('docker', False) is True:
-                    utils.log("{} - {} ({}): {}%".format(i[0], srx, srr, round(current/len(seq_chunks*1.0)*100, 1)))
+                    utils.log("{} - {} ({}): {}%".format(i[0], srx, srr, round(current*100.0/len(seq_chunks), 1)))
                 else:
                     utils.processing(
                         current,
