@@ -1,0 +1,17 @@
+name: Run a quick test using Docker
+
+on:
+  repository_dispatch:
+    types: [trigger-dryrun-docker]
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Pull Docker image and run a quick test
+      run: |
+        docker pull yangwu91/r2g.docker:latest
+        docker run yangwu91/r2g.docker:latest --dry-run

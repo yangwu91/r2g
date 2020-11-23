@@ -31,11 +31,12 @@ class TestBlast(unittest.TestCase):
             'chrome_proxy': None,
             'firefox_proxy': None,
             'browser': None,
+            'docker': True,
         }
 
     def test_query_cut_error_1(self):
         utils.log("Raising r2g.online.blast query Error 1.")
-        self.args["cut"] = "7,31"
+        self.args["cut"] = "7,30"
         with self.assertRaises(errors.InputError):
             _, _ = blast.query(self.args, "http://127.0.0.1:4444/wd/hub")
 
