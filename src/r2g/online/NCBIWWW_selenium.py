@@ -267,6 +267,8 @@ def _setup_chrome_webdriver(browser="http://127.0.0.1:4444/wd/hub", proxy=None):
         opts.add_argument("--proxy-server={}".format(proxy))
     opts.add_argument("--headless")
     opts.add_argument("--user-agent={}".format(headers["User-Agent"]))
+    # opts.add_argument("--disable-dev-shm-usage")
+    opts.add_argument("--no-sandbox")
     # opts.add_argument("--disable-gpu")  # On Windows
     # prefs = {
     #    'profile.default_content_setting_values' : {

@@ -39,7 +39,7 @@ RUN \
     #==================================================
     # add normal user and group with passwordless sudo
     #==================================================
-    useradd r2guser --uid 1000 --create-home --shell /bin/bash && \
+    useradd r2guser --uid 1001 --create-home --shell /bin/bash && \
     usermod -a -G sudo r2guser && \
     echo 'ALL ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers && \
     echo 'r2guser:secret' | chpasswd && \

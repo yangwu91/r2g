@@ -32,6 +32,8 @@
 
 ## Implementation
 
+The GUI wrapper `r2g GUI` now is released. Please visit [here](https://github.com/yangwu91/r2g_gui) if you prefer a graphic user interface (GUI) for r2g. **The following methods are for installing command line interface (CLI) for r2g**. Please note that GUI is still under developing, and CLI is more stable than GUI.
+
 ### Pulling the Docker image (recommended)
 
 Please follow the instruction [here](https://docs.docker.com/get-docker/) to download and install Docker based on your operating system before running the Docker image. **For Windows users**, please check [here](https://github.com/yangwu91/r2g/wiki/Install-and-configure-Docker-on-Windows) to configure the Docker if it is your first time to use it. 
